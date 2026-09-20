@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anshuman Chaturvedi – B.Tech student in Information Technology</title>
+  <meta name="description" content="Personal site of Anshuman Chaturvedi, a B.Tech Information Technology student in Delhi. Education, technologies and contact details.">
+  <meta name="theme-color" content="#ECF2EE">
+  <meta property="og:title" content="Anshuman Chaturvedi">
+  <meta property="og:description" content="B.Tech student in Information Technology, Delhi.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E3B2E'/%3E%3Crect x='6' y='16' width='4' height='10' fill='%232F7D5B'/%3E%3Crect x='14' y='8' width='4' height='18' fill='%23ECF2EE'/%3E%3Crect x='22' y='12' width='4' height='14' fill='%23E4571A'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Literata:ital,opsz,wght@0,7..72,400..600;1,7..72,400..500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --mist: #ECF2EE;
+      --pine: #0E3B2E;
+      --fern: #276B4C;
+      --line: #C5D6CB;
+      --signal: #E4571A;
+      --signal-light: #FF8A3D;
+
+      --display: "Familjen Grotesk", "Helvetica Neue", Arial, sans-serif;
+      --text: "Literata", Georgia, "Times New Roman", serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    body {
+      margin: 0;
+      background: var(--mist);
+      color: var(--pine);
+      font-family: var(--text);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    :focus-visible {
+      outline: 3px solid var(--pine);
+      outline-offset: 3px;
+    }
+
+    .wrap {
+      width: min(70rem, 100% - 2.5rem);
+      margin-inline: auto;
+    }
+
+    .skip {
+      position: absolute;
+      left: 1rem;
+      top: -4rem;
+      background: var(--pine);
+      color: var(--mist);
+      padding: .6rem 1rem;
+      font-family: var(--display);
+      font-weight: 600;
+      z-index: 10;
+    }
+    .skip:focus { top: 1rem; }
+
+    /* ---------- Hero ---------- */
+    .hero { padding-block: 1.5rem clamp(3rem, 7vw, 5rem); }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem 2rem;
+      font-family: var(--display);
+      font-weight: 600;
+    }
+    .brand { text-decoration: none; font-size: 1.4rem; font-weight: 700; letter-spacing: -.02em; }
+    .topbar nav { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; }
+    .topbar nav a { text-decoration: none; }
+    .topbar nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+    h1 {
+      margin: clamp(3.5rem, 9vw, 6.5rem) 0 1.75rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(3.1rem, 11.5vw, 9rem);
+      line-height: .96;
+      letter-spacing: -.045em;
+    }
+    h1 span { display: block; }
+
+    .intro { margin: 0; max-width: 40ch; font-size: 1.25rem; }
+
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin: 2rem 0 0; }
+
+    .btn {
+      display: inline-block;
+      background: var(--pine);
+      color: var(--mist);
+      font-family: var(--display);
+      font-weight: 700;
+      text-decoration: none;
+      padding: .85rem 1.6rem;
+      border-radius: .4rem;
+      transition: background-color .15s;
+    }
+    .btn:hover { background: #17573F; }
+
+    .text-link {
+      font-family: var(--display);
+      font-weight: 600;
+      text-underline-offset: 5px;
+    }
+
+    /* Sorting bars: the one moving element on the page */
+    .stage { margin-top: clamp(3rem, 7vw, 5rem); }
+
+    .bars {
+      display: flex;
+      align-items: flex-end;
+      gap: clamp(2px, .5vw, 6px);
+      height: clamp(7rem, 20vw, 13rem);
+      border-bottom: 2px solid var(--pine);
+    }
+    .bar {
+      flex: 1;
+      background: var(--fern);
+      border-radius: 3px 3px 0 0;
+      transition: height .14s ease-out, background-color .3s;
+    }
+    .bar.hot { background: var(--signal); }
+    .bars.sorted .bar {
+      background: var(--pine);
+      transition-delay: 0s, calc(var(--i) * 20ms);
+    }
+
+    .stage-foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: .5rem 1.5rem;
+      margin-top: .9rem;
+      font-size: .95rem;
+    }
+    .stage-foot p { margin: 0; }
+    .ghost {
+      font: 600 .95rem var(--display);
+      color: var(--pine);
+      background: none;
+      border: 2px solid var(--pine);
+      border-radius: .4rem;
+      padding: .4rem .9rem;
+      cursor: pointer;
+    }
+    .ghost:hover { background: var(--pine); color: var(--mist); }
+
+    /* ---------- Sections ---------- */
+    .section { padding-block: clamp(3.5rem, 8vw, 6rem) 0; }
+    .section:last-of-type { padding-bottom: clamp(3.5rem, 8vw, 6rem); }
+
+    h2 {
+      margin: 0 0 2rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -.03em;
+    }
+
+    .edu { list-style: none; margin: 0; padding: 0; border-top: 2px solid var(--pine); }
+    .edu li {
+      display: grid;
+      gap: .5rem 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    @media (min-width: 48rem) {
+      .edu li { grid-template-columns: 11rem 1fr; }
+    }
+    .years {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--fern);
+    }
+    .edu h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+      line-height: 1.2;
+      letter-spacing: -.01em;
+    }
+    .degree { margin: .25rem 0 0; font-style: italic; }
+    .facts {
+      margin: 1rem 0 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .35rem 1.5rem;
+    }
+    .facts dt { font-family: var(--display); font-weight: 600; color: var(--fern); }
+    .facts dd { margin: 0; max-width: 46ch; }
+
+    .sub { margin: 0 0 1rem; font: 600 1.15rem var(--display); color: var(--fern); }
+    .langs {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem 2.25rem;
+      font-family: var(--display);
+      font-weight: 600;
+      font-size: clamp(1.9rem, 5vw, 3.25rem);
+      line-height: 1.25;
+      letter-spacing: -.025em;
+    }
+
+    /* ---------- Contact ---------- */
+    .contact {
+      background: var(--pine);
+      color: var(--mist);
+      padding-block: clamp(4rem, 9vw, 7rem) 2rem;
+    }
+    .contact :focus-visible { outline-color: var(--signal-light); }
+
+    .contact-grid { display: grid; gap: 3rem; }
+    @media (min-width: 56rem) {
+      .contact-grid { grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    }
+
+    .contact h2 { font-size: clamp(2.4rem, 6vw, 4.25rem); letter-spacing: -.035em; margin-bottom: 1.25rem; }
+    .contact-lead { margin: 0 0 1.75rem; max-width: 36ch; font-size: 1.2rem; }
+
+    .email {
+      display: inline-block;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.35rem, 3.6vw, 2.1rem);
+      letter-spacing: -.02em;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 6px;
+      overflow-wrap: anywhere;
+    }
+    .email:hover { color: var(--signal-light); }
+
+    .copy {
+      display: block;
+      margin-top: 1.25rem;
+      font: 600 .95rem var(--display);
+      color: var(--mist);
+      background: none;
+      border: 2px solid var(--mist);
+      border-radius: .4rem;
+      padding: .45rem 1rem;
+      cursor: pointer;
+    }
+    .copy:hover { background: var(--mist); color: var(--pine); }
+
+    .field { display: grid; gap: .4rem; margin-bottom: 1.25rem; }
+    .field label { font-family: var(--display); font-weight: 600; }
+    .field input,
+    .field textarea {
+      width: 100%;
+      font: inherit;
+      color: var(--pine);
+      background: var(--mist);
+      border: 2px solid transparent;
+      border-radius: .4rem;
+      padding: .75rem .9rem;
+    }
+    .field textarea { min-height: 9rem; resize: vertical; }
+
+    .send {
+      font: 700 1.05rem var(--display);
+      color: var(--pine);
+      background: var(--signal-light);
+      border: 0;
+      border-radius: .4rem;
+      padding: .85rem 1.6rem;
+      cursor: pointer;
+      transition: background-color .15s;
+    }
+    .send:hover { background: var(--mist); }
+
+    .hint { margin: 1rem 0 0; font-size: .95rem; color: var(--line); }
+    .status { margin: .5rem 0 0; min-height: 1.6em; font-size: .95rem; }
+
+    footer {
+      margin-top: clamp(4rem, 9vw, 6rem);
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(236, 242, 238, .25);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: .5rem 2rem;
+      font-size: .95rem;
+      color: var(--line);
+    }
+    footer nav { display: flex; gap: 1.5rem; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#education">Skip to content</a>
+
+  <header class="hero" id="top">
+    <div class="wrap">
+      <div class="topbar">
+        <a class="brand" href="#top" aria-label="Anshuman Chaturvedi, back to top">AC</a>
+        <nav aria-label="Main">
+          <a href="#education">Education</a>
+          <a href="#technologies">Technologies</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <h1><span>Anshuman</span><span>Chaturvedi</span></h1>
+      <p class="intro">B.Tech student in Information Technology at Guru Gobind Singh Indraprastha University, Delhi. Graduating in 2027.</p>
+
+      <p class="actions">
+        <a class="btn" href="#contact">Get in touch</a>
+        <a class="text-link" href="https://github.com/eulerlaw" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a class="text-link" href="https://www.linkedin.com/in/anshuman-chaturvedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </p>
+
+      <div class="stage">
+        <div class="bars" id="bars" role="img" aria-label="28 bars being sorted into ascending order by quicksort"></div>
+        <div class="stage-foot">
+          <p>Quicksort on 28 random values.</p>
+          <button class="ghost" type="button" id="sort-again">Shuffle and sort again</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="education">
+      <div class="wrap">
+        <h2>Education</h2>
+        <ol class="edu">
+          <li>
+            <p class="years">2023–2027</p>
+            <div>
+              <h3>Guru Gobind Singh Indraprastha University</h3>
+              <p class="degree">B.Tech. in Information Technology</p>
+              <dl class="facts">
+                <dt>CGPA</dt>
+                <dd>8.04</dd>
+                <dt>Coursework</dt>
+                <dd>Computer Architecture, Computer Algorithms, Computational Theory</dd>
+              </dl>
+            </div>
+          </li>
+          <li>
+            <p class="years">2020–2022</p>
+            <div>
+              <h3>Cambridge Senior Secondary School</h3>
+              <p class="degree">Class 10 and 12</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="technologies">
+      <div class="wrap">
+        <h2>Technologies</h2>
+        <h3 class="sub">Languages</h3>
+        <ul class="langs">
+          <li>C++</li>
+          <li>C</li>
+          <li>CSS</li>
+          <li>SQL</li>
+          <li>JavaScript</li>
+          <li>Java</li>
+          <li>Rust</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div>
+          <h2>Get in touch</h2>
+          <p class="contact-lead">Write to me about an internship, a project or a question. I'll reply by email.</p>
+          <a class="email" id="email" href="mailto:chatanshuman1@gmail.com">chatanshuman1@gmail.com</a>
+          <button class="copy" type="button" id="copy-email">Copy email address</button>
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="field">
+            <label for="sender">Your name</label>
+            <input id="sender" name="sender" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" maxlength="1500" required></textarea>
+          </div>
+          <button class="send" type="submit">Send message</button>
+          <p class="hint">This opens your email app with the message filled in, ready to send.</p>
+          <p class="status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
+      <footer>
+        <span>© 2026 Anshuman Chaturvedi</span>
+        <nav aria-label="Elsewhere">
+          <a href="https://github.com/eulerlaw" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://www.linkedin.com/in/anshuman-chaturvedi" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </nav>
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var EMAIL = 'chatanshuman1@gmail.com';
+
+      /* ---------- Sorting bars ---------- */
+      var N = 28;
+      var barsEl = document.getElementById('bars');
+      var sortBtn = document.getElementById('sort-again');
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = [];
+      var vals = [];
+      var timer = null;
+
+      for (var i = 0; i < N; i++) {
+        var b = document.createElement('div');
+        b.className = 'bar';
+        b.style.setProperty('--i', i);
+        barsEl.appendChild(b);
+        els.push(b);
+      }
+
+      function inOrder() {
+        var a = [];
+        for (var i = 1; i <= N; i++) a.push(i);
+        return a;
+      }
+
+      function shuffled() {
+        var a = inOrder();
+        for (var i = N - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var t = a[i]; a[i] = a[j]; a[j] = t;
+        }
+        return a;
+      }
+
+      function render(hot) {
+        for (var i = 0; i < N; i++) {
+          els[i].style.height = (vals[i] / N * 100) + '%';
+          els[i].classList.toggle('hot', !!hot && (i === hot[0] || i === hot[1]));
+        }
+      }
+
+      // Records every swap quicksort makes, so the page can replay them one by one.
+      function quickSortSteps(arr) {
+        var a = arr.slice();
+        var steps = [];
+        function swap(x, y) {
+          var t = a[x]; a[x] = a[y]; a[y] = t;
+          steps.push([x, y]);
+        }
+        function qs(lo, hi) {
+          if (lo >= hi) return;
+          var pivot = a[hi];
+          var p = lo;
+          for (var j = lo; j < hi; j++) {
+            if (a[j] < pivot) {
+              if (p !== j) swap(p, j);
+              p++;
+            }
+          }
+          if (p !== hi) swap(p, hi);
+          qs(lo, p - 1);
+          qs(p + 1, hi);
+        }
+        qs(0, a.length - 1);
+        return steps;
+      }
+
+      function play() {
+        clearInterval(timer);
+        barsEl.classList.remove('sorted');
+        vals = shuffled();
+        render();
+        var steps = quickSortSteps(vals);
+        var k = 0;
+        timer = setInterval(function () {
+          if (k >= steps.length) {
+            clearInterval(timer);
+            render();
+            barsEl.classList.add('sorted');
+            return;
+          }
+          var s = steps[k++];
+          var t = vals[s[0]]; vals[s[0]] = vals[s[1]]; vals[s[1]] = t;
+          render(s);
+        }, 55);
+      }
+
+      sortBtn.addEventListener('click', play);
+
+      if (reduceMotion) {
+        vals = inOrder();
+        render();
+        barsEl.classList.add('sorted');
+      } else {
+        play();
+      }
+
+      /* ---------- Contact ---------- */
+      var form = document.getElementById('contact-form');
+      var status = document.getElementById('form-status');
+      var copyBtn = document.getElementById('copy-email');
+      var emailLink = document.getElementById('email');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var name = form.elements['sender'].value.trim();
+        var message = form.elements['message'].value.trim();
+
+        if (!name || !message) {
+          status.textContent = 'Please add your name and a message.';
+          return;
+        }
+
+        var subject = 'Message from ' + name + ' via your website';
+        var body = message + '\n\n' + name;
+        window.location.href = 'mailto:' + EMAIL +
+          '?subject=' + encodeURIComponent(subject) +
+          '&body=' + encodeURIComponent(body);
+        status.textContent = 'Opening your email app. If nothing opens, copy the address above and email me directly.';
+      });
+
+      copyBtn.addEventListener('click', function () {
+        function fallback() {
+          var range = document.createRange();
+          range.selectNodeContents(emailLink);
+          var sel = window.getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          status.textContent = 'Address selected. Press Ctrl+C (or Cmd+C) to copy it.';
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(EMAIL).then(function () {
+            status.textContent = 'Email address copied.';
+          }, fallback);
+        } else {
+          fallback();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
